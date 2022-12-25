@@ -2,9 +2,18 @@
 
 #container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    height: 800px;
+    height: 400px;
+    /* background: red; */
 }
 
 
+#cards-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background: green; */
+    height: 400px;
+    width: 1830px;
+}
