@@ -4,6 +4,7 @@
 body {
     background-image: url('img/table.png');
     background-size: 100%;
+    color: white;
 }
 
 #container {
@@ -12,6 +13,7 @@ body {
     align-items: center;
     height: 400px;
     /* background: red; */
+    height: 530px;
 }
 
 
@@ -25,6 +27,15 @@ body {
 }
 
 
+#text-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 200px;
+    padding-right: 250px;
+    /* border: 5px solid black; */
+}
+
 
 #shuffle-btn {
     width: 300px;
@@ -32,8 +43,8 @@ body {
     background: yellow;
     border: none;
     border-radius: 6px;
-    margin-left: 750px;
-    margin-bottom: 800px;
+    /* margin-left: 750px;
+    margin-bottom: 800px; */
     cursor: pointer;
 }
 
@@ -44,9 +55,13 @@ body {
     background: yellow;
     border: none;
     border-radius: 6px;
-    margin-top: 600px;
-    margin-left: 550px;
+    /* margin-top: 600px;
+    margin-left: 550px; */
     cursor: pointer;
 }
 
 
+#outcome {
+    margin-top: 200px;
+    
+}

@@ -6,6 +6,7 @@
 const shuffleBtn = document.getElementById('shuffle-btn');
 const deal2  = document.getElementById('deal2');
 const cardsContainer = document.getElementById('cards-container');
+const outcomeH1 = document.getElementById('outcome-h1');
 
 
 
@@ -40,15 +41,18 @@ function deal2Cards() {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then (res => res.json())
         .then (data => {
-            
+            //functions
             let htmlString = '';
             for (let element of data.cards) {
                 htmlString += `<img src='${element.image}'/>`
             }
             cardsContainer.innerHTML = htmlString;
             //console.log(data.cards[0].value, data.cards[1].value);
-            cardConverter(data.cards[0], data.cards[1]);
-        })
+            const cards = cardConverter(data.cards[0], data.cards[1]);
+            const outcomeString = winDecider(cards[0], cards[1]);
+            //console.log(outcomeString);
+            outcomeH1.textContent = outcomeString;
+        })  
 }
 
 
@@ -103,8 +107,7 @@ function cardConverter(card1, card2) {
         }
     }
     
-    console.log(value1, value2)
-    winDecider(value1, value2);
+    return [value1, value2]
 }
 
 
@@ -112,12 +115,15 @@ function cardConverter(card1, card2) {
 function winDecider(card1, card2) {
     if (card1 > card2) {
         console.log('card1 has the higher score!')
+        return 'You lose!'
     }
     else if (card1 < card2) {
         console.log('card2 has the higher score!')
+        return 'You won!'
     }
     else {
         console.log("it's a tie!")
+        return "It's a tie!"
     }
 }
 
