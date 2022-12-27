@@ -30,47 +30,47 @@ deal2.addEventListener('click', renderGame);
 //Functions
 
 
-function shuffleCards() {
+async function shuffleCards() {
     scoreOpp = 0;
     scoreYou = 0;
     oppH1.textContent = `Opponent: ${scoreOpp}`;
     youH1.textContent = `You: ${scoreYou}`;
 
-    fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
-        .then((response) => response.json())
-        .then((data) => {
-            deckId = data.deck_id
-            //localStorage.setItem('deckId', JSON.stringify(deckId))
-            console.log(data.remaining);
-            remainingCardsDisplayer(data);
-            //console.log('shuffled! your deck id is ' + deckId);
-            deal2.disabled = false;
-            deal2.classList.remove('disabled');
-        });
+    const res = await fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
+        //.then((response) => response.json())
+        //.then((data) => 
+    const data = await res.json()
+    deckId = data.deck_id
+    //localStorage.setItem('deckId', JSON.stringify(deckId))
+    console.log(data.remaining);
+    remainingCardsDisplayer(data);
+    //console.log('shuffled! your deck id is ' + deckId);
+    deal2.disabled = false;
+    deal2.classList.remove('disabled');
+    
         
 }
 
 
 
-function renderGame() {
+async function renderGame() {
     //const deckId = JSON.parse(localStorage.getItem('deckId'))
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-        .then (res => res.json())
-        .then (data => {
-            //functions
-            let htmlString = '';
-            for (let element of data.cards) {
-                htmlString += `<img src='${element.image}'/>`
-            }
-            cardsContainer.innerHTML = htmlString;
-            //console.log(data.remaining)
-            const cards = cardConverter(data.cards[0], data.cards[1]);
-            const outcomeString = winDecider(cards[0], cards[1], data);
-            //console.log(outcomeString);
-            outcomeH1.textContent = outcomeString;      //render outcome  ///////////////////////////////////
-            scoreCounter(outcomeString);
-            remainingCardsDisplayer(data);
-        })  
+    const response = await fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+        //.then (res => res.json())
+        //.then (data => 
+    const data = await response.json()
+    let htmlString = '';
+    for (let element of data.cards) {
+        htmlString += `<img src='${element.image}'/>`
+    }
+    cardsContainer.innerHTML = htmlString;
+    //console.log(data.remaining)
+    const cards = cardConverter(data.cards[0], data.cards[1]);
+    const outcomeString = winDecider(cards[0], cards[1], data);
+    //console.log(outcomeString);
+    outcomeH1.textContent = outcomeString;      //render outcome  ///////////////////////////////////
+    scoreCounter(outcomeString);
+    remainingCardsDisplayer(data);     
 }
 
 
