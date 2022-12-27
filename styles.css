@@ -43,20 +43,18 @@ body {
     background: yellow;
     border: none;
     border-radius: 6px;
-    /* margin-left: 750px;
-    margin-bottom: 800px; */
+    margin-left: 150px;
     cursor: pointer;
 }
 
 
-#deal2 {
+.deal2 {
     width: 300px;
     height: 100px;
     background: yellow;
     border: none;
     border-radius: 6px;
-    /* margin-top: 600px;
-    margin-left: 550px; */
+    margin-right: 150px;
     cursor: pointer;
 }
 
@@ -64,4 +62,9 @@ body {
 #outcome {
     margin-top: 200px;
     
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
